@@ -8,7 +8,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//Instantiate COM 
-
+//NC-PTM-01
 (*Instanitate Serial port com function *) 
 
 K4S8_DRL_03_E12_fbSerialLineControl(
@@ -20,8 +20,32 @@ K4S8_DRL_03_E12_fbSerialLineControl(
 	RxBuffer:= K4S8_DRL_03_E12_EL6021_SerialRXBuffer,
 	Error=> ,
 	ErrorID=> );
-	
-	
+
+//NC-PTM-02
+(*Instanitate Serial port com function *) 
+
+K4S8_DRL_03_E15_fbSerialLineControl(
+	Mode:= SERIALLINEMODE_EL6_22B,
+	pComIn:= ADR(K4S8_DRL_03_E15_stComIn),
+	pComOut:=ADR(K4S8_DRL_03_E15_stComOut),
+	SizeComIn:= SIZEOF(K4S8_DRL_03_E15_stComIn),
+	TxBuffer:= K4S8_DRL_03_E15_EL6021_SerialTXBuffer,
+	RxBuffer:= K4S8_DRL_03_E15_EL6021_SerialRXBuffer,
+	Error=> ,
+	ErrorID=> );	
+
+//DP1-PTM-01
+(*Instanitate Serial port com function *) 
+
+K4S8_DRL_03_E18_fbSerialLineControl(
+	Mode:= SERIALLINEMODE_EL6_22B,
+	pComIn:= ADR(K4S8_DRL_03_E18_stComIn),
+	pComOut:=ADR(K4S8_DRL_03_E18_stComOut),
+	SizeComIn:= SIZEOF(K4S8_DRL_03_E18_stComIn),
+	TxBuffer:= K4S8_DRL_03_E18_EL6021_SerialTXBuffer,
+	RxBuffer:= K4S8_DRL_03_E18_EL6021_SerialRXBuffer,
+	Error=> ,
+	ErrorID=> );	
 ]]></ST>
     </Implementation>
   </POU>

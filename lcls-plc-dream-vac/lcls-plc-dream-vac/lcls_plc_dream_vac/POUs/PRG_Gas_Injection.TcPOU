@@ -148,8 +148,11 @@ x_DP3_Turb_01_ON_ilk := (NOT (DREAM_NC_PTM_01.iq_stPTM.eState = pumpFAULT) and N
 *)					   
 //Turbo Interlocks
 DREAM_NC_PTM_01(i_xExtIlkOK:= xExtIlkOK_NC, iq_stPTM => );
+DREAM_NC_PTM_01.M_Serial_IO(st_Pfeiffer_CTRL:=st_Pfeiffer_NC_PTM_01_CTRL[1], st_Pfeiffer_RBK:=  st_Pfeiffer_NC_PTM_01_RBK[1]);
 DREAM_NC_PTM_02(i_xExtIlkOK:= xExtIlkOK_NC, iq_stPTM => );
+DREAM_NC_PTM_02.M_Serial_IO(st_Pfeiffer_CTRL:=st_Pfeiffer_NC_PTM_02_CTRL[1], st_Pfeiffer_RBK:=  st_Pfeiffer_NC_PTM_02_RBK[1]);
 DREAM_DP1_PTM_01(i_xExtIlkOK:= xExtIlkOK_DP, iq_stPTM => );
+DREAM_DP1_PTM_01.M_Serial_IO(st_Pfeiffer_CTRL:=st_Pfeiffer_DP1_PTM_01_CTRL[1], st_Pfeiffer_RBK:=  st_Pfeiffer_DP1_PTM_01_RBK[1]);
 DREAM_DP2_PTM_01(i_xExtIlkOK:= xExtIlkOK_DP, iq_stPTM => );
 DREAM_DP3_PTM_01(i_xExtIlkOK:= xExtIlkOK_DP, iq_stPTM => );
 
@@ -157,15 +160,37 @@ xStartTurbo := FALSE;
 
 
 /// INSTANTIATE COM 
+////SERIAL INTERFACE COM 
+//NC-PTM-01
+st_Pfeiffer_NC_PTM_01_CTRL[1].iSerialAddress := 1;
+st_Pfeiffer_NC_PTM_01_CTRL[1].xEnableComm := TRUE;
 
-NC_PTM_01_COM(astPfeifferControl := st_Pfeiffer_NC_PTM_01_CTRL,
+//
+NC_PTM_01_COM( astPfeifferControl := st_Pfeiffer_NC_PTM_01_CTRL,
 			   astPfeifferStatus := st_Pfeiffer_NC_PTM_01_RBK,
-				SerialRXBuffer:= K4S8_DRL_03_E12_EL6021_SerialRXBuffer,
+			    SerialRXBuffer:= K4S8_DRL_03_E12_EL6021_SerialRXBuffer,
 				SerialTXBuffer:= K4S8_DRL_03_E12_EL6021_SerialTXBuffer);
 
+//NC-PTM02
+st_Pfeiffer_NC_PTM_02_CTRL[1].iSerialAddress := 1;
+st_Pfeiffer_NC_PTM_02_CTRL[1].xEnableComm := TRUE;
 
+//
+NC_PTM_02_COM( astPfeifferControl := st_Pfeiffer_NC_PTM_02_CTRL,
+			   astPfeifferStatus := st_Pfeiffer_NC_PTM_02_RBK,
+			    SerialRXBuffer:= K4S8_DRL_03_E15_EL6021_SerialRXBuffer,
+				SerialTXBuffer:= K4S8_DRL_03_E15_EL6021_SerialTXBuffer);
 
-]]></ST>
+//DP1-PTM-01
+
+st_Pfeiffer_DP1_PTM_01_CTRL[1].iSerialAddress := 1;
+st_Pfeiffer_DP1_PTM_01_CTRL[1].xEnableComm := TRUE;
+
+//
+DP1_PTM_01_COM( astPfeifferControl := st_Pfeiffer_DP1_PTM_01_CTRL,
+			   astPfeifferStatus := st_Pfeiffer_DP1_PTM_01_RBK,
+			    SerialRXBuffer:= K4S8_DRL_03_E18_EL6021_SerialRXBuffer,
+				SerialTXBuffer:= K4S8_DRL_03_E18_EL6021_SerialTXBuffer);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
